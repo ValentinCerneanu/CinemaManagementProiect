@@ -35,12 +35,14 @@ public class RoomController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping()
-    public ResponseEntity<Iterable<RoomEntity>> getRooms( @RequestParam(required = false) String name){
+    public ResponseEntity<Iterable<RoomEntity>> getRooms( @RequestParam(required = false) String name,  @RequestParam(defaultValue = "0") Integer pageNo,
+                                                          @RequestParam(defaultValue = "10") Integer pageSize,
+                                                          @RequestParam(defaultValue = "id") String sortBy){
         Iterable<RoomEntity> returnedRoomEntity=null;
 
 
         if (name == null) {
-            returnedRoomEntity = roomService.processGetRooms();
+            returnedRoomEntity = roomService.processGetRooms(pageNo, pageSize, sortBy);
 
 
         }else {
@@ -53,6 +55,5 @@ public class RoomController {
         return new ResponseEntity<>(returnedRoomEntity, HttpStatus.OK);
 
     }
-
 
 }

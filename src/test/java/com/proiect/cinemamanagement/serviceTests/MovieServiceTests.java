@@ -51,7 +51,7 @@ public class MovieServiceTests {
     @DisplayName("Test get movies")
     public void testGetAllMovies(){
         doReturn(movies).when(movieRepository).findAll();
-        movieService.processGetMovies();
+        movieService.processGetMovies(1,1,"id");
     }
 
     @Test

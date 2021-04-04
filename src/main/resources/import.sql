@@ -1,0 +1,1 @@
+insert into room values(5, "Sala 5", 30, 10, 3);

@@ -160,7 +160,7 @@ public class TicketController {
         profit-=filmCost;
         //am scazut salariile angajatilor
 
-        employeeEntityIterable=employeeService.processGetEmployees();
+        employeeEntityIterable=employeeService.processGetEmployeesWithoutPagination();
         for(EmployeeEntity e:employeeEntityIterable){
             costs+=e.getSalary();
             profit-=e.getSalary();

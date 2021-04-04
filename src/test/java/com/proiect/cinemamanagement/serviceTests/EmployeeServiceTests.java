@@ -51,7 +51,7 @@ public class EmployeeServiceTests {
     @DisplayName("Test get employees")
     public void testGetAllEmployees(){
         doReturn(employees).when(employeeRepository).findAll();
-        employeeService.processGetEmployees();
+        employeeService.processGetEmployees(1,1,"id");
     }
 
     @Test

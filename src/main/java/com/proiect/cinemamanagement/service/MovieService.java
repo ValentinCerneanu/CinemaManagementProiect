@@ -5,6 +5,10 @@ import com.proiect.cinemamanagement.entity.MovieEntity;
 import com.proiect.cinemamanagement.repository.MovieRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -33,9 +37,16 @@ public class MovieService {
     }
 
     //get all movies
-    public Iterable<MovieEntity> processGetMovies(){
+    public Iterable<MovieEntity> processGetMovies(Integer pageNo, Integer pageSize, String sortBy){
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
 
-        return movieRepository.findAll();
+        Page<MovieEntity> pageResult = movieRepository.findAll(paging);
+
+        log.info("Get all movies", movieRepository.findAll());
+
+
+        return pageResult.getContent();
+
     }
 
     //get one movie by id

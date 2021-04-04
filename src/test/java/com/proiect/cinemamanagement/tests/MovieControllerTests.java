@@ -64,7 +64,7 @@ public class MovieControllerTests {
         list.add(movie);
         list.add(movie2);
         ObjectMapper mapper = new ObjectMapper();
-        given(this.movieService.processGetMovies()).willReturn(list);
+        given(this.movieService.processGetMovies(1,1,"id")).willReturn(list);
         this.mvc
                 .perform(get("/cm/api/v1/movie").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

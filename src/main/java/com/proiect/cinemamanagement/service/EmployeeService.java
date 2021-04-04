@@ -5,6 +5,10 @@ import com.proiect.cinemamanagement.entity.EmployeeEntity;
 import com.proiect.cinemamanagement.repository.EmployeeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -30,11 +34,18 @@ public class EmployeeService {
         return employeeRepository.save(employeeEntity);
     }
 
-    //get all
-    public Iterable<EmployeeEntity> processGetEmployees() {
+    //get employees withou pagination
+    public Iterable<EmployeeEntity> processGetEmployeesWithoutPagination() {
         return employeeRepository.findAll();
     }
 
+    //get all
+    public Iterable<EmployeeEntity> processGetEmployees(Integer pageNo, Integer pageSize, String sortBy) {
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+
+        Page<EmployeeEntity> pageResult = employeeRepository.findAll(paging);
+        return pageResult.getContent();
+    }
     //get by name
     public Iterable<EmployeeEntity> processFindByFirstNameContaining(String firstName) {
         return employeeRepository.findByFirstNameContaining(firstName);

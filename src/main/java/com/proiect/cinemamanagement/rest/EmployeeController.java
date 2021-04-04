@@ -37,12 +37,14 @@ public class EmployeeController {
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping()
     public ResponseEntity<Iterable<EmployeeEntity>> getEmployees(
-            @RequestParam(required = false) String name) {
+            @RequestParam(required = false) String name, @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(defaultValue = "id") String sortBy) {
 
         Iterable<EmployeeEntity> returnedEmployeeEntity=null;
         if (name == null) {
             log.info("Received request to get employee");
-            returnedEmployeeEntity = employeeService.processGetEmployees();
+            returnedEmployeeEntity = employeeService.processGetEmployees(pageNo, pageSize, sortBy);
         } else {
             log.info("Received request to get employee by name: " + name);
             returnedEmployeeEntity = employeeService.processFindByFirstNameContaining(name);
@@ -54,6 +56,7 @@ public class EmployeeController {
 
         return new ResponseEntity<>(returnedEmployeeEntity, HttpStatus.OK);
     }
+
 
     //get employee by id
     @CrossOrigin(origins = "http://localhost:4200")

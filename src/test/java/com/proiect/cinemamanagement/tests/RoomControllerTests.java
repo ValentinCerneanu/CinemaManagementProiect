@@ -65,7 +65,7 @@ public class RoomControllerTests {
         list.add(room);
         list.add(room2);
         ObjectMapper mapper = new ObjectMapper();
-        given(this.roomService.processGetRooms()).willReturn(list);
+        given(this.roomService.processGetRooms(1,1,"id")).willReturn(list);
         this.mvc
                 .perform(get("/cm/api/v1/rooms").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

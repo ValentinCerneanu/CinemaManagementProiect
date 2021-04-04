@@ -50,7 +50,7 @@ public class RoomServiceTests {
     @DisplayName("Test get rooms")
     public void testGetAllRooms(){
         doReturn(rooms).when(roomRepository).findAll();
-        roomService.processGetRooms();
+        roomService.processGetRooms(1,1,"id");
     }
 
     @Test

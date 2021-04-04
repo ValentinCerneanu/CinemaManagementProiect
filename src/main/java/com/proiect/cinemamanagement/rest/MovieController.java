@@ -47,12 +47,14 @@ public class MovieController {
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN') or hasRole('ADMIN')")
     @GetMapping()
     public ResponseEntity<Iterable<MovieEntity>> getMovies(
-            @RequestParam(required = false) String name) {
+            @RequestParam(required = false) String name,  @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(defaultValue = "id") String sortBy) {
 
         Iterable<MovieEntity> returnedMovieEntity=null;
         if (name == null) {
             log.info("Received request to get movies");
-            returnedMovieEntity = movieService.processGetMovies();
+            returnedMovieEntity = movieService.processGetMovies(pageNo, pageSize, sortBy);
             log.info("ret", returnedMovieEntity);
         } else {
             log.info("Received request to get movies by name: " + name);

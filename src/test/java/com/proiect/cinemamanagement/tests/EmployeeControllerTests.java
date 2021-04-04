@@ -69,7 +69,7 @@ public class EmployeeControllerTests {
         list.add(employee);
         list.add(employee2);
         ObjectMapper mapper = new ObjectMapper();
-        given(this.employeeService.processGetEmployees()).willReturn(list);
+        given(this.employeeService.processGetEmployees(1,1,"id")).willReturn(list);
         this.mvc
                 .perform(get("/cm/api/v1/employees").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
