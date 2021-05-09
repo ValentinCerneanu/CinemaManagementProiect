@@ -55,7 +55,7 @@ public class MovieController {
         if (name == null) {
             log.info("Received request to get movies");
             returnedMovieEntity = movieService.processGetMovies(pageNo, pageSize, sortBy);
-            log.info("ret", returnedMovieEntity);
+            log.info("returned {}", returnedMovieEntity);
         } else {
             log.info("Received request to get movies by name: " + name);
             returnedMovieEntity = movieService.processFindByNameContaining(name);

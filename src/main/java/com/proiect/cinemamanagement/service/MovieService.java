@@ -42,7 +42,7 @@ public class MovieService {
 
         Page<MovieEntity> pageResult = movieRepository.findAll(paging);
 
-        log.info("Get all movies", movieRepository.findAll());
+        log.info("Get all movies {}", movieRepository.findAll());
 
 
         return pageResult.getContent();

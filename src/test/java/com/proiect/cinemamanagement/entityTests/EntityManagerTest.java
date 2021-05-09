@@ -2,6 +2,9 @@ package com.proiect.cinemamanagement.entityTests;
 
 import com.proiect.cinemamanagement.dao.Employee;
 import com.proiect.cinemamanagement.dao.Room;
+import com.proiect.cinemamanagement.entity.CardEntity;
+import com.proiect.cinemamanagement.entity.EmployeeEntity;
+import com.proiect.cinemamanagement.entity.MovieEntity;
 import com.proiect.cinemamanagement.entity.RoomEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +33,26 @@ public class EntityManagerTest {
         RoomEntity roomFound= entityManager.find(RoomEntity.class, 1L);
         assertEquals(roomFound.getName(), "Sala 5");
     }
+
+    @Test
+    public void findCard(){
+        CardEntity cardFound = entityManager.find(CardEntity.class, 1L);
+        assertEquals(cardFound.getFirstName(), "Ioana");
+    }
+
+    @Test
+    public void findMovie(){
+        MovieEntity movieEntity = entityManager.find(MovieEntity.class, 1L);
+        assertEquals(movieEntity.getName(), "Nasul");
+    }
+
+    @Test
+    public void findEmployee(){
+        EmployeeEntity employeeEntity = entityManager.find(EmployeeEntity.class, 1L);
+        assertEquals(employeeEntity.getFirstName(), "Popescu");
+    }
+
+
 
 
 }
